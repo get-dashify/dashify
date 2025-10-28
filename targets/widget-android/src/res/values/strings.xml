@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="small_shortcut_widget_description">Quickly open your project</string>
+    <string name="medium_firewall_widget_description">Peek the firewall metrics for your site</string>
+    <string name="medium_functions_widget_description">Peek the Functions metrics for your site</string>
+    <string name="widget_loading">Loading…</string>
+</resources>
+

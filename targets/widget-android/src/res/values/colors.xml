@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Neutral Colors -->
+    <color name="neutral000">#FFFFFF</color>
+    <color name="neutral100">#E6ECF2</color>
+    <color name="neutral200">#ABB5BF</color>
+    <color name="neutral300">#7E8792</color>
+    <color name="neutral400">#4D565F</color>
+    <color name="neutral500">#3B434C</color>
+    <color name="neutral600">#272F38</color>
+    <color name="neutral700">#1E242C</color>
+    <color name="neutral800">#12181F</color>
+    <color name="neutral900">#060B10</color>
+    
+    <!-- Teal Colors -->
+    <color name="teal000">#DEFFEE</color>
+    <color name="teal100">#8EFBF7</color>
+    <color name="teal200">#32E6E2</color>
+    <color name="teal300">#14D8D4</color>
+    <color name="teal400">#05BDBA</color>
+    <color name="teal500">#04A29F</color>
+    <color name="teal600">#02807D</color>
+    <color name="teal700">#016968</color>
+    <color name="teal800">#014847</color>
+    <color name="teal900">#0C2A2A</color>
+    
+    <!-- Green Colors -->
+    <color name="green000">#E7FCE9</color>
+    <color name="green100">#BEF9C6</color>
+    <color name="green200">#93F5A5</color>
+    <color name="green300">#64D87F</color>
+    <color name="green400">#3AC364</color>
+    <color name="green500">#31A855</color>
+    <color name="green600">#228240</color>
+    <color name="green700">#1A6B34</color>
+    <color name="green800">#0F4A21</color>
+    <color name="green900">#152A19</color>
+    
+    <!-- Gold Colors -->
+    <color name="gold000">#FDF5D8</color>
+    <color name="gold100">#F6E0A5</color>
+    <color name="gold200">#FACD6F</color>
+    <color name="gold300">#FBB13D</color>
+    <color name="gold400">#F98E21</color>
+    <color name="gold500">#D5771A</color>
+    <color name="gold600">#A85D13</color>
+    <color name="gold700">#8C4C0D</color>
+    <color name="gold800">#603408</color>
+    <color name="gold900">#332213</color>
+    
+    <!-- Red Colors -->
+    <color name="red000">#FBEEED</color>
+    <color name="red100">#FBD3D0</color>
+    <color name="red200">#FFBDBA</color>
+    <color name="red300">#FFADA9</color>
+    <color name="red400">#FE8382</color>
+    <color name="red500">#FE4E5C</color>
+    <color name="red600">#D62740</color>
+    <color name="red700">#AF2536</color>
+    <color name="red800">#800A20</color>
+    <color name="red900">#3D1C1B</color>
+    
+    <!-- Pink Colors -->
+    <color name="pink000">#FCF0FB</color>
+    <color name="pink100">#F6D2F2</color>
+    <color name="pink200">#F7BCF3</color>
+    <color name="pink300">#F3A8EE</color>
+    <color name="pink400">#EF7FEB</color>
+    <color name="pink500">#DF5ADC</color>
+    <color name="pink600">#B938B8</color>
+    <color name="pink700">#9A2D99</color>
+    <color name="pink800">#6C1D6B</color>
+    <color name="pink900">#381B37</color>
+    
+    <!-- Purple Colors -->
+    <color name="purple000">#F5F2FC</color>
+    <color name="purple100">#E2D9F7</color>
+    <color name="purple200">#D8C7FF</color>
+    <color name="purple300">#CAB9F4</color>
+    <color name="purple400">#B49DF1</color>
+    <color name="purple500">#9B80ED</color>
+    <color name="purple600">#775CE7</color>
+    <color name="purple700">#614ACA</color>
+    <color name="purple800">#382AA4</color>
+    <color name="purple900">#292142</color>
+    
+    <!-- Blue Colors -->
+    <color name="blue000">#EDF4FF</color>
+    <color name="blue100">#CDE2FF</color>
+    <color name="blue200">#B5D2FB</color>
+    <color name="blue300">#9CBEF6</color>
+    <color name="blue400">#80ABFA</color>
+    <color name="blue500">#5D8DF5</color>
+    <color name="blue600">#316BF4</color>
+    <color name="blue700">#2E51ED</color>
+    <color name="blue800">#2036A1</color>
+    <color name="blue900">#1B205B</color>
+    
+    <!-- Theme Specific Colors -->
+    <color name="bgApp">#060B10</color>
+    <color name="bgDark">#1E242C</color>
+    <color name="bgDarker">#12181F</color>
+    <color name="bgLight">#272F38</color>
+    <color name="bgLighter">#3B434C</color>
+    
+    <color name="text">#FFFFFF</color>
+    <color name="textMuted">#E6ECF2</color>
+</resources>
+

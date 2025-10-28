@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:initialLayout="@layout/sample_widget"
+    android:previewImage="@drawable/shortcut_preview"
+  	android:minWidth="110dp"
+    android:minHeight="50dp" 
+    android:targetCellWidth="2"
+    android:targetCellHeight="1"
+    android:updatePeriodMillis="900000"
+    android:description="@string/small_shortcut_widget_description"
+    android:widgetCategory="home_screen"
+    android:configure="com.dashify.mobile.SmallShortcutConfigurationActivity"
+    android:widgetFeatures="reconfigurable"
+/>
+
