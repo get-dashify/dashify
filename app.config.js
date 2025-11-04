@@ -59,6 +59,7 @@ module.exports = ({ config }) => {
                     },
                 },
             ],
+            './plugins/withAndroidHeap',
             'expo-router',
             [
                 'expo-splash-screen',
