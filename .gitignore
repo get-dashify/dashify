@@ -39,6 +39,10 @@ yarn-error.*
 ios/
 android/
 
+!modules/widgetkit/ios
+!modules/widgetkit/android
+modules/widgetkit/android/build
+
 .env
 
 google-services.json
