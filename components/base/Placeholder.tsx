@@ -1,8 +1,8 @@
 import ActivityIndicator from '@/components/base/ActivityIndicator'
 import Text from '@/components/base/Text'
 import { COLORS } from '@/theme/colors'
-import { useEffect, useState } from 'react'
-import { View } from 'react-native'
+import { useEffect, useMemo, useState } from 'react'
+import { Platform, View } from 'react-native'
 
 export default function buildPlaceholder({
     isLoading,
@@ -97,6 +97,8 @@ function LoadingIndicatorWithHint() {
 }
 
 function PlaceholderRoot({ children }: { children: React.ReactNode }) {
+    const isAndroid = useMemo(() => Platform.OS === 'android', [])
+
     return (
         <View
             style={{
@@ -104,6 +106,7 @@ function PlaceholderRoot({ children }: { children: React.ReactNode }) {
                 justifyContent: 'center',
                 alignItems: 'center',
                 paddingBottom: 150,
+                paddingTop: isAndroid ? 100 : undefined,
             }}
         >
             {children}

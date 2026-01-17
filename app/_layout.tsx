@@ -93,7 +93,7 @@ function RootLayout() {
                 }}
             >
                 <GestureHandlerRootView>
-                    <KeyboardProvider>
+                    <KeyboardProvider statusBarTranslucent={true} navigationBarTranslucent={true}>
                         <PersistQueryClientProvider
                             client={queryClient}
                             persistOptions={{
@@ -108,6 +108,18 @@ function RootLayout() {
                                     navigationBarHidden: true,
                                 }}
                             >
+                                <Stack.Screen
+                                    name="index"
+                                    options={{
+                                        title: '',
+                                        headerShown: false,
+                                        gestureEnabled: false,
+                                        contentStyle: {
+                                            backgroundColor: COLORS.bgApp,
+                                        },
+                                    }}
+                                />
+
                                 <Stack.Screen
                                     name="onboard/index"
                                     options={{
@@ -134,7 +146,7 @@ function RootLayout() {
                                     name="home/index"
                                     options={{
                                         title: 'Home',
-                                        headerShown: false,
+                                        headerShown: Platform.OS === 'android',
                                         ...commonHeaderStyle,
                                         ...commonContentStyle,
                                         autoHideHomeIndicator: true,

@@ -30,7 +30,7 @@ yarn-error.*
 *.pem
 
 # local env files
-.env*.local
+.env*
 
 # typescript
 *.tsbuildinfo
@@ -42,8 +42,6 @@ android/
 !modules/widgetkit/ios
 !modules/widgetkit/android
 modules/widgetkit/android/build
-
-.env
 
 google-services.json
 *.apk
