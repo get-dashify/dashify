@@ -37,8 +37,8 @@ func formatCompactCount(_ value: Int) -> String {
   return "\(sign)\(numberString)\(suffix)"
 }
 
-func getAppDeepLink(siteId: String?) -> String {
-  guard let siteId = siteId else {
+func getAppDeepLink(connectionId: String?, path: String) -> String {
+  guard let connectionId = connectionId else {
     return "dashify://"
   }
   
@@ -46,7 +46,8 @@ func getAppDeepLink(siteId: String?) -> String {
     let isSubscribed = sharedDefaults.bool(forKey: isSubscribedKey)
     
     if isSubscribed {
-      return "dashify://sites/\(siteId)/home"
+      let separator = path.contains("?") ? "&" : "?"
+      return "dashify://\(path)\(separator)_widgetConnectionId=\(connectionId)"
     }
   }
 

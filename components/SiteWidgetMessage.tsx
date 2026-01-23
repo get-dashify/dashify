@@ -1,4 +1,3 @@
-import WidgetKitModule from '@/modules/widgetkit'
 import { COLORS } from '@/theme/colors'
 import * as Sentry from '@sentry/react-native'
 import { usePlacement, useUser } from 'expo-superwall'
@@ -22,7 +21,6 @@ export default function SiteWidgetMessage() {
             }}
             onPress={() => {
                 const featureFn = () => {
-                    WidgetKitModule.setIsSubscribed(true)
                     Alert.alert(
                         'Congrats!',
                         'You can now go to your homescreen and search for "Dashify" widgets.'

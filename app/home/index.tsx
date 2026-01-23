@@ -8,7 +8,6 @@ import RefreshControl from '@/components/base/RefreshControl'
 import { useNotificationHandler } from '@/lib/hooks'
 import { useWebhookCheck } from '@/lib/hooks'
 import { queryClient } from '@/lib/query'
-import WidgetKitModule from '@/modules/widgetkit'
 import { mmkvStorage } from '@/lib/storage'
 import { usePersistedStore } from '@/store/persisted'
 import { COLORS } from '@/theme/colors'
@@ -194,7 +193,6 @@ export default function HomeScreen() {
                 registerPlacement({
                     placement: 'OpenNotifications',
                     feature: () => {
-                        WidgetKitModule.setIsSubscribed(true)
                         router.push('/notifications/')
                     },
                 }).catch((error) => {
@@ -242,7 +240,6 @@ export default function HomeScreen() {
                     registerPlacement({
                         placement: 'LifetimeOffer_1',
                         feature: () => {
-                            WidgetKitModule.setIsSubscribed(true)
                             Alert.alert('Congrats!', 'You unlocked lifetime access to Dashify.')
                         },
                     }).catch((error) => {
@@ -380,7 +377,6 @@ export default function HomeScreen() {
 
                                 if (e.nativeEvent.name === 'Add Account') {
                                     const featureFn = () => {
-                                        WidgetKitModule.setIsSubscribed(true)
                                         router.push('/login/')
                                     }
 
@@ -406,7 +402,6 @@ export default function HomeScreen() {
 
                                 if (e.nativeEvent.name === 'Notifications') {
                                     const featureFn = () => {
-                                        WidgetKitModule.setIsSubscribed(true)
                                         router.push('/notifications/')
                                     }
 

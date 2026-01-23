@@ -50,10 +50,17 @@ struct SmallShortcutEntry: TimelineEntry {
 struct SmallShortcutEntryView: View {
   var entry: SmallShortcutProvider.Entry
   
+  private var widgetURL: URL? {
+    if let site = entry.configuration.site {
+      return URL(string: getAppDeepLink(connectionId: site.connection.id, path: "sites/\(site.id)/home"))
+    }
+    return URL(string: getAppDeepLink(connectionId: nil, path: ""))
+  }
+  
   var body: some View {
     if (!entry.isSubscribed) {
       SubscriptionRequiredView()
-        .widgetURL(URL(string: getAppDeepLink(siteId: entry.configuration.site?.id)))
+        .widgetURL(widgetURL)
     } else {
       VStack(alignment: .center, spacing: 10.0) {
         Image("AppIconImage")
@@ -81,7 +88,7 @@ struct SmallShortcutEntryView: View {
         }
       }
       .frame(maxWidth: .infinity, maxHeight: .infinity)
-      .widgetURL(URL(string: getAppDeepLink(siteId: entry.configuration.site?.id)))
+      .widgetURL(widgetURL)
     }
   }
 }

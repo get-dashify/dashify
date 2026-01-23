@@ -51,7 +51,11 @@ fun SmallShortcutContent() {
     val site = Gson().fromJson(rawSite, SiteListItem::class.java)
     
     val context = LocalContext.current
-    val deepLink = getAppDeepLink(context, site?.id)
+    val deepLink = if (site != null) {
+        getAppDeepLink(context, site.connection.id, "sites/${site.id}/home")
+    } else {
+        getAppDeepLink(context, null, "")
+    }
     
     Box(
         modifier = GlanceModifier

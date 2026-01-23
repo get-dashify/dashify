@@ -31,8 +31,8 @@ fun formatCompactCount(value: Int): String {
 /**
  * Generate deep link to the app
  */
-fun getAppDeepLink(context: Context, siteId: String?): String {
-    if (siteId == null) {
+fun getAppDeepLink(context: Context, connectionId: String?, path: String): String {
+    if (connectionId == null) {
         return "dashify://"
     }
     
@@ -40,7 +40,8 @@ fun getAppDeepLink(context: Context, siteId: String?): String {
     val isSubscribed = prefs.getBoolean(IS_SUBSCRIBED_KEY, false)
     
     return if (isSubscribed) {
-        "dashify://sites/$siteId/home"
+        val separator = if (path.contains("?")) "&" else "?"
+        "dashify://$path${separator}_widgetConnectionId=$connectionId"
     } else {
         "dashify://?showPaywall=1"
     }

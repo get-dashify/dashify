@@ -148,10 +148,17 @@ struct MediumFirewallInfoItemView: View {
 struct MediumFirewallEntryView: View {
   var entry: MediumFirewallProvider.Entry
   
+  private var widgetURL: URL? {
+    if let site = entry.configuration.site {
+      return URL(string: getAppDeepLink(connectionId: site.connection.id, path: "sites/\(site.id)/home"))
+    }
+    return URL(string: getAppDeepLink(connectionId: nil, path: ""))
+  }
+  
   var body: some View {
     if (!entry.isSubscribed) {
       SubscriptionRequiredView()
-        .widgetURL(URL(string: getAppDeepLink(siteId: entry.configuration.site?.id)))
+        .widgetURL(widgetURL)
     } else {
       let config = entry.configuration
       
@@ -211,7 +218,7 @@ struct MediumFirewallEntryView: View {
         .frame(maxWidth: .infinity, alignment: .center)
       }
       .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-      .widgetURL(URL(string: getAppDeepLink(siteId: entry.configuration.site?.id)))
+      .widgetURL(widgetURL)
     }
   }
 }

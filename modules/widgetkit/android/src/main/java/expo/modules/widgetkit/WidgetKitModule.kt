@@ -80,6 +80,17 @@ class WidgetKitModule : Module() {
                 notifyAllWidgets()
             }
         }
+		
+		 Function("setConnections") { connections: List<Connection> ->
+			appContext.reactContext?.getSharedPreferences(groupName, Context.MODE_PRIVATE)?.let { prefs ->
+                prefs.edit() {
+                    putString(instancesKey, Gson().toJson(connections))
+                    apply()
+                }
+
+                notifyAllWidgets()
+			}
+        }
 
 		// also clears isSubscribed
         Function("clearAllConnections") {
