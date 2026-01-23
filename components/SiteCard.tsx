@@ -31,7 +31,7 @@ export default function SiteCard({
 
         onPress?.()
 
-        router.push(`/sites/${site.id}/home`)
+        router.push(`/sites/${site.id}/home/`)
 
         if (countToReviewPrompt === 0) {
             // make sure at least 1 day has passed
@@ -187,7 +187,7 @@ export default function SiteCard({
             <TouchableOpacity
                 onPress={() => {
                     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Rigid)
-                    router.push(`/deployments/${site.published_deploy?.id}`)
+                    router.push(`/deployments/${site.published_deploy?.id}/`)
                     // onPress?.()
                 }}
                 style={{

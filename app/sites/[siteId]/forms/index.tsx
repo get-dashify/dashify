@@ -55,7 +55,7 @@ export default function Forms() {
                         justifyContent: 'space-between',
                         alignItems: 'center',
                     }}
-                    onPress={() => router.push(`/forms/${form.id}`)}
+                    onPress={() => router.push(`/forms/${form.id}/`)}
                 >
                     <View style={{ flex: 1 }}>
                         <Text

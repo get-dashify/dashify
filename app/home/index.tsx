@@ -121,7 +121,7 @@ export default function HomeScreen() {
                 {connections.length === 1 && (
                     <TouchableOpacity
                         onPress={() => {
-                            router.push('/login')
+                            router.push('/login/')
                         }}
                     >
                         <Text style={{ color: COLORS.teal500, fontSize: 16 }}>
@@ -194,8 +194,8 @@ export default function HomeScreen() {
                 registerPlacement({
                     placement: 'OpenNotifications',
                     feature: () => {
-                        router.push('/notifications')
                         WidgetKitModule.setIsSubscribed(true)
+                        router.push('/notifications/')
                     },
                 }).catch((error) => {
                     Sentry.captureException(error)
@@ -361,7 +361,7 @@ export default function HomeScreen() {
                                                     if (connections.length === 1) {
                                                         mmkvStorage.clearAll()
                                                         router.dismissAll()
-                                                        router.replace('/login')
+                                                        router.replace('/login/')
                                                         queryClient.clear()
                                                         return
                                                     }
@@ -380,8 +380,8 @@ export default function HomeScreen() {
 
                                 if (e.nativeEvent.name === 'Add Account') {
                                     const featureFn = () => {
-                                        router.push('/login')
                                         WidgetKitModule.setIsSubscribed(true)
+                                        router.push('/login/')
                                     }
 
                                     if (__DEV__) {
@@ -406,8 +406,8 @@ export default function HomeScreen() {
 
                                 if (e.nativeEvent.name === 'Notifications') {
                                     const featureFn = () => {
-                                        router.push('/notifications')
                                         WidgetKitModule.setIsSubscribed(true)
+                                        router.push('/notifications/')
                                     }
 
                                     if (__DEV__) {
@@ -593,7 +593,7 @@ export default function HomeScreen() {
                             deployment={latestDeploymentQuery.data}
                             onPress={() => {
                                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Rigid)
-                                router.push(`/deployments/${latestDeploymentQuery.data.id}`)
+                                router.push(`/deployments/${latestDeploymentQuery.data.id}/`)
                             }}
                         >
                             <Text

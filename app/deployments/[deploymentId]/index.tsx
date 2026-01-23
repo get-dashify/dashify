@@ -271,7 +271,7 @@ function InfoRow({
     )
 }
 
-function ButtonRow({
+function ButtonRow<T>({
     label,
     icon,
     route,
@@ -279,7 +279,7 @@ function ButtonRow({
 }: {
     label: string
     icon: keyof typeof Ionicons.glyphMap
-    route: Href
+    route: Href<T>
     backgroundColor?: string
 }) {
     return (

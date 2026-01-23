@@ -146,7 +146,7 @@ export default function SiteHomeScreen() {
                                           if (router.canGoBack()) {
                                               router.back()
                                           } else {
-                                              router.replace('/home')
+                                              router.replace('/home/')
                                           }
                                           return
                                       }
@@ -300,7 +300,7 @@ export default function SiteHomeScreen() {
                         <DeploymentCard
                             deployment={item}
                             onPress={() => {
-                                router.push(`/deployments/${item.id}`)
+                                router.push(`/deployments/${item.id}/`)
                             }}
                         />
                     </View>
