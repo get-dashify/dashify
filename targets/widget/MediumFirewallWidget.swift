@@ -109,15 +109,12 @@ struct MediumFirewallProvider: AppIntentTimelineProvider {
       }
     }
     
-    // Generate a timeline consisting of five entries an hour apart, starting from the current date.
     let currentDate = Date()
-    for hourOffset in 0 ..< 5 {
-      let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-      let entry = MediumFirewallEntry(date: entryDate, configuration: configuration, isSubscribed: isSubscribed, firewallData: firewallData)
-      entries.append(entry)
-    }
+    let entry = MediumFirewallEntry(date: currentDate, configuration: configuration, isSubscribed: isSubscribed, firewallData: firewallData)
+    entries.append(entry)
     
-    return Timeline(entries: entries, policy: .atEnd)
+    let refreshDate = Calendar.current.date(byAdding: .minute, value: 15, to: currentDate)!
+    return Timeline(entries: entries, policy: .after(refreshDate))
   }
 }
 

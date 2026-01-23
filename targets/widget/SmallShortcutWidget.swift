@@ -20,7 +20,6 @@ struct SmallShortcutProvider: AppIntentTimelineProvider {
   }
   
   func timeline(for configuration: SmallShortcutAppIntentConfiguration, in context: Context) async -> Timeline<SmallShortcutEntry> {
-    var entries: [SmallShortcutEntry] = []
     var isSubscribed: Bool = false
     
     if let sharedDefaults = UserDefaults(suiteName: appGroupName) {
@@ -29,15 +28,9 @@ struct SmallShortcutProvider: AppIntentTimelineProvider {
       isSubscribed = isSubscribedValue
     }
     
-    // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-    let currentDate = Date()
-    for hourOffset in 0 ..< 5 {
-      let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-      let entry = SmallShortcutEntry(date: entryDate, configuration: configuration, isSubscribed: isSubscribed)
-      entries.append(entry)
-    }
+    let entry = SmallShortcutEntry(date: Date(), configuration: configuration, isSubscribed: isSubscribed)
     
-    return Timeline(entries: entries, policy: .atEnd)
+    return Timeline(entries: [entry], policy: .never)
   }
 }
 
