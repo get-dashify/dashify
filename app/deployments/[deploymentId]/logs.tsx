@@ -6,7 +6,6 @@ import { COLORS } from '@/theme/colors'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import { FlashList } from '@shopify/flash-list'
 import { format } from 'date-fns'
-import { isLiquidGlassAvailable } from 'expo-glass-effect'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Stack, useGlobalSearchParams } from 'expo-router'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
@@ -286,7 +285,7 @@ export default function ProjectLogs() {
                         >
                             <Ionicons
                                 name={isExpanded ? 'chevron-expand-outline' : 'expand-outline'}
-                                size={isLiquidGlassAvailable() ? 32 : 28}
+                                size={28}
                                 color={COLORS.text}
                             />
                         </HeaderTouchableOpacity>

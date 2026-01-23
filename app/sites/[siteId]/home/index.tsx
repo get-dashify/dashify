@@ -113,7 +113,7 @@ export default function SiteHomeScreen() {
                                   actions={[
                                       {
                                           title: 'Close',
-                                          systemIcon: 'close',
+                                          systemIcon: 'xmark',
                                       },
                                       {
                                           title: 'Visit',

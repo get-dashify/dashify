@@ -8,7 +8,6 @@ import { Ionicons } from '@expo/vector-icons'
 import { FlashList } from '@shopify/flash-list'
 import { useQuery } from '@tanstack/react-query'
 import { format } from 'date-fns'
-import { isLiquidGlassAvailable } from 'expo-glass-effect'
 import { useGlobalSearchParams, useNavigation } from 'expo-router'
 import { useLayoutEffect, useMemo, useState } from 'react'
 import { Text, View } from 'react-native'
@@ -71,7 +70,7 @@ export default function Logs() {
                 >
                     <Ionicons
                         name={isExpanded ? 'chevron-expand-outline' : 'expand-outline'}
-                        size={isLiquidGlassAvailable() ? 32 : 28}
+                        size={28}
                         color={COLORS.text}
                     />
                 </HeaderTouchableOpacity>

@@ -4,6 +4,7 @@ import { queryClient } from '@/lib/query'
 import { usePersistedStore } from '@/store/persisted'
 import { COLORS } from '@/theme/colors'
 import { Ionicons } from '@expo/vector-icons'
+import { useMutation } from '@tanstack/react-query'
 import { router, useNavigation } from 'expo-router'
 import { usePlacement } from 'expo-superwall'
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
@@ -20,13 +21,8 @@ import {
     TouchableOpacity,
     View,
 } from 'react-native'
-import { KeyboardAwareScrollView } from 'react-native-keyboard-controller'
-import Animated, {
-    interpolate,
-    useAnimatedKeyboard,
-    useAnimatedStyle,
-    withTiming,
-} from 'react-native-reanimated'
+import { KeyboardAwareScrollView, useAnimatedKeyboard } from 'react-native-keyboard-controller'
+import Animated, { interpolate, useAnimatedStyle, withTiming } from 'react-native-reanimated'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 export default function LoginScreen() {
@@ -39,17 +35,13 @@ export default function LoginScreen() {
 
     const apiTokenRef = useRef<string>('')
 
-    const [isLoading, setIsLoading] = useState(false)
     const [isModal, setIsModal] = useState(false)
 
     const showCloseButton = useMemo(() => {
         return Platform.OS === 'android' && isModal
     }, [isModal])
 
-    const keyboard = useAnimatedKeyboard({
-        isStatusBarTranslucentAndroid: true,
-        isNavigationBarTranslucentAndroid: true,
-    })
+    const keyboard = useAnimatedKeyboard()
 
     const helpBoxAnimatedStyles = useAnimatedStyle(() => {
         const isKeyboardVisible = interpolate(keyboard.height.value, [0, 1], [0, 1], 'clamp')
@@ -60,35 +52,20 @@ export default function LoginScreen() {
         }
     })
 
-    const validateToken = useCallback(async (token: string) => {
-        console.log('[validateToken]  token', token)
-        try {
-            const response = await checkLoginCredentials(token)
-            return response
-        } catch {
-            Alert.alert('Invalid token', 'Please enter a valid Netlify API token')
-        }
-    }, [])
+    const loginMutation = useMutation({
+        mutationFn: async () => {
+            const token = apiTokenRef.current.trim()
+            if (!token) {
+                throw new Error('Please enter an API token')
+            }
 
-    const handleLogin = useCallback(async () => {
-        const token = apiTokenRef.current.trim() || ''
-        if (!token) {
-            Alert.alert('Error', 'Please enter an API token')
-            return
-        }
-
-        setIsLoading(true)
-
-        try {
-            const user = await validateToken(token)
+            const user = await checkLoginCredentials(token)
             if (!user || !user.id || !user.email) {
-                Alert.alert('Error', 'Invalid token')
-                return
+                throw new Error('Invalid token')
             }
 
             if (connections.find((c) => c.id === user.id)) {
-                Alert.alert('Error', 'You are already connected to this account')
-                return
+                throw new Error('You are already connected to this account')
             }
 
             addConnection({
@@ -122,15 +99,15 @@ export default function LoginScreen() {
                     }
                 },
             })
-
-            router.replace('/home')
-        } catch (error) {
+        },
+        onSuccess: () => {
+            router.replace('/home/')
+        },
+        onError: (error) => {
             console.error('[handleLogin] error', error)
-            Alert.alert('Error', 'Could not connect to Netlify')
-        } finally {
-            setIsLoading(false)
-        }
-    }, [validateToken, switchConnection, addConnection, connections, registerPlacement])
+            Alert.alert('Error', error.message || 'Could not connect to Netlify')
+        },
+    })
 
     const openApiDocs = useCallback(() => {
         try {
@@ -163,7 +140,7 @@ export default function LoginScreen() {
                     }}
                     contentContainerStyle={{
                         flexGrow: 1,
-                        paddingTop: 120,
+                        paddingTop: isModal ? 60 : 120,
                         paddingBottom: 280,
                     }}
                     showsVerticalScrollIndicator={false}
@@ -257,15 +234,15 @@ export default function LoginScreen() {
                                 }}
                                 returnKeyLabel="Connect"
                                 returnKeyType="go"
-                                onSubmitEditing={handleLogin}
+                                onSubmitEditing={() => loginMutation.mutate()}
                             />
                             <View style={{ marginTop: 20 }}>
                                 <Button
-                                    title={isLoading ? 'Connecting...' : 'Connect'}
-                                    onPress={handleLogin}
-                                    disabled={isLoading}
+                                    title={loginMutation.isPending ? 'Connecting...' : 'Connect'}
+                                    onPress={() => loginMutation.mutate()}
+                                    disabled={loginMutation.isPending}
                                     color={
-                                        Platform.OS === 'android' && isLoading
+                                        Platform.OS === 'android' && loginMutation.isPending
                                             ? COLORS.text
                                             : COLORS.teal500
                                     }

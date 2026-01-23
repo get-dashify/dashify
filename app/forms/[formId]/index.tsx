@@ -9,6 +9,7 @@ import { Ionicons } from '@expo/vector-icons'
 import { FlashList } from '@shopify/flash-list'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import * as FileSystem from 'expo-file-system/legacy'
+import { isLiquidGlassAvailable } from 'expo-glass-effect'
 import * as Haptics from 'expo-haptics'
 import { useLocalSearchParams, useNavigation } from 'expo-router'
 import * as Sharing from 'expo-sharing'
@@ -122,7 +123,11 @@ export default function FormSubmissionsScreen() {
                               downloadFormMutation.mutate()
                           }}
                       >
-                          <Ionicons name="download" size={36} color={COLORS.teal} />
+                          <Ionicons
+                              name="download"
+                              size={36}
+                              color={isLiquidGlassAvailable() ? COLORS.white : COLORS.teal}
+                          />
                       </HeaderTouchableOpacity>
                   ),
         })

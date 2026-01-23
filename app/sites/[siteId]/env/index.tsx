@@ -64,7 +64,7 @@ export default function SiteEnvScreen() {
                     <Ionicons
                         name={isLiquidGlassAvailable() ? 'add' : 'add-circle'}
                         size={36}
-                        color={COLORS.teal}
+                        color={isLiquidGlassAvailable() ? COLORS.white : COLORS.teal}
                     />
                 </HeaderTouchableOpacity>
             ),
