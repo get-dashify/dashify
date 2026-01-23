@@ -221,6 +221,16 @@ function RootLayout() {
                                         autoHideHomeIndicator: true,
                                     }}
                                 />
+
+                                <Stack.Screen
+                                    name="icons/index"
+                                    options={{
+                                        title: 'App Icon',
+                                        ...commonHeaderStyle,
+                                        ...commonContentStyle,
+                                        autoHideHomeIndicator: true,
+                                    }}
+                                />
                             </Stack>
                         </PersistQueryClientProvider>
                     </KeyboardProvider>

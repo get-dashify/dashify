@@ -3,6 +3,7 @@ import ApiStatus from '@/components/ApiStatus'
 import DeploymentCard from '@/components/DeploymentCard'
 import SiteCard from '@/components/SiteCard'
 import ActivityIndicator from '@/components/base/ActivityIndicator'
+import { HeaderTouchableOpacity } from '@/components/base/HeaderTouchableOpacity'
 import RefreshControl from '@/components/base/RefreshControl'
 import { useNotificationHandler } from '@/lib/hooks'
 import { useWebhookCheck } from '@/lib/hooks'
@@ -20,7 +21,10 @@ import * as Haptics from 'expo-haptics'
 import * as QuickActions from 'expo-quick-actions'
 import { Stack, router } from 'expo-router'
 import { SquircleView } from 'expo-squircle-view'
+import * as StoreReview from 'expo-store-review'
 import { usePlacement, useSuperwall, useUser } from 'expo-superwall'
+import * as WebBrowser from 'expo-web-browser'
+import ms from 'ms'
 import { useEffect, useMemo } from 'react'
 import {
     Alert,
@@ -470,19 +474,100 @@ export default function HomeScreen() {
                             </HeaderButton>
                         </ContextMenu>
                     ),
-                    // headerRight: () => (
-                    //     <TouchableOpacity
-                    //         style={{
-                    //             width: 20,
-                    //             height: 20,
-                    //         }}
-                    //         onPress={() => {
-                    //             queryClient.clear()
-                    //         }}
-                    //     >
-                    //         <Ionicons name="cog" size={20} color={COLORS.gray950} />
-                    //     </TouchableOpacity>
-                    // ),
+                    headerRight: () => (
+                        <ContextMenu
+                            dropdownMenuMode={true}
+                            actions={[
+                                {
+                                    title: 'Icons',
+                                    systemIcon: 'app.gift',
+                                },
+                                {
+                                    title: 'Feedback',
+                                    systemIcon: 'message',
+                                },
+                                {
+                                    title: 'Rate',
+                                    systemIcon: 'star.fill',
+                                },
+                            ]}
+                            onPress={async (e) => {
+                                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Rigid)
+
+                                if (e.nativeEvent.name === 'Icons') {
+                                    if (__DEV__) {
+                                        router.push('/icons/')
+                                        return
+                                    }
+
+                                    registerPlacement({
+                                        placement: 'AppIcons',
+                                        feature: () => {
+                                            router.push('/icons/')
+                                        },
+                                    })
+                                    return
+                                }
+                                if (e.nativeEvent.name === 'Feedback') {
+                                    await WebBrowser.openBrowserAsync(
+                                        process.env.EXPO_PUBLIC_FEEDBACK_URL!
+                                    )
+                                    return
+                                }
+                                if (e.nativeEvent.name === 'Rate') {
+                                    Alert.alert(
+                                        'Do you like Dashify?',
+                                        'Let us know about your experience.',
+                                        [
+                                            {
+                                                text: 'No',
+                                                onPress: () => {
+                                                    Alert.alert(
+                                                        'Thank you!',
+                                                        'Your review has been sent successfully.'
+                                                    )
+                                                },
+                                            },
+                                            {
+                                                text: 'Yes',
+                                                onPress: () => {
+                                                    if (
+                                                        usePersistedStore.getState().installTs <
+                                                        Date.now() - ms('1d')
+                                                    ) {
+                                                        StoreReview.requestReview()
+                                                        return
+                                                    }
+
+                                                    registerPlacement({
+                                                        placement: 'LifetimeOffer_1_Show',
+                                                        feature: async () => {
+                                                            await StoreReview.requestReview()
+                                                        },
+                                                    }).catch((error) => {
+                                                        Sentry.captureException(error)
+                                                        console.error(
+                                                            'Error registering LifetimeOffer_1_Show for Rate',
+                                                            error
+                                                        )
+                                                    })
+                                                },
+                                            },
+                                        ]
+                                    )
+                                    return
+                                }
+                            }}
+                        >
+                            <HeaderTouchableOpacity>
+                                <Ionicons
+                                    name="ellipsis-horizontal-sharp"
+                                    size={32}
+                                    color={COLORS.text}
+                                />
+                            </HeaderTouchableOpacity>
+                        </ContextMenu>
+                    ),
                 }}
             />
             {currentAccount ? (

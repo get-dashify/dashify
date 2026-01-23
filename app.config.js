@@ -104,6 +104,53 @@ module.exports = ({ config }) => {
                     ],
                 },
             ],
+            'expo-font',
+            'expo-web-browser',
+            [
+                'expo-alternate-app-icons',
+                [
+                    {
+                        name: 'NodesDark',
+                        ios: './assets/icon-nodes-dark.png',
+                        android: {
+                            foregroundImage: './assets/icon-nodes-dark.png',
+                            backgroundColor: '#12181F',
+                        },
+                    },
+                    {
+                        name: 'SymbolDark',
+                        ios: './assets/icon-symbol-dark.png',
+                        android: {
+                            foregroundImage: './assets/icon-symbol-dark.png',
+                            backgroundColor: '#12181F',
+                        },
+                    },
+                    {
+                        name: 'SymbolLight',
+                        ios: './assets/icon-symbol-light.png',
+                        android: {
+                            foregroundImage: './assets/icon-symbol-light.png',
+                            backgroundColor: '#12181F',
+                        },
+                    },
+                    {
+                        name: 'SymbolNodesDark',
+                        ios: './assets/icon-symbol-nodes-dark.png',
+                        android: {
+                            foregroundImage: './assets/icon-symbol-nodes-dark.png',
+                            backgroundColor: '#12181F',
+                        },
+                    },
+                    {
+                        name: 'SymbolNodesLight',
+                        ios: './assets/icon-symbol-nodes-light.png',
+                        android: {
+                            foregroundImage: './assets/icon-symbol-nodes-light.png',
+                            backgroundColor: '#12181F',
+                        },
+                    },
+                ],
+            ],
         ],
 
         experiments: {
