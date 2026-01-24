@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:initialLayout="@layout/sample_widget"
+    android:previewImage="@drawable/firewall_preview"
+    android:minWidth="250dp"
+    android:minHeight="40dp"
+    android:targetCellWidth="4"
+    android:targetCellHeight="1"
+    android:updatePeriodMillis="900000"
+    android:description="@string/medium_firewall_widget_description"
+    android:widgetCategory="home_screen"
+    android:configure="com.dashify.mobile.MediumFirewallConfigurationActivity"
+    android:widgetFeatures="reconfigurable"
+/>
+
