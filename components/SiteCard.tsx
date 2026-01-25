@@ -8,7 +8,6 @@ import * as Linking from 'expo-linking'
 import { router } from 'expo-router'
 import { SquircleView } from 'expo-squircle-view'
 import * as StoreReview from 'expo-store-review'
-import ms from 'ms'
 import { useCallback, useMemo } from 'react'
 import { Alert, Text, TouchableOpacity, View, useWindowDimensions } from 'react-native'
 
@@ -34,8 +33,7 @@ export default function SiteCard({
         router.push(`/sites/${site.id}/home/`)
 
         if (countToReviewPrompt === 0) {
-            // make sure at least 1 day has passed
-            if (!lastShownReviewPrompt || lastShownReviewPrompt < Date.now() - ms('1d')) {
+            if (!lastShownReviewPrompt) {
                 setLastShownReviewPrompt(Date.now())
                 setCountToReviewPrompt(12)
                 StoreReview.requestReview()
