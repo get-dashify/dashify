@@ -10,17 +10,16 @@ const withAndroidSourceFiles = require('./withAndroidSourceFiles')
 const withModifiedAppBuildGradle = (config, opts) =>
     withAppBuildGradle(config, (config) => {
         const gradleDependencies = `
-    implementation("androidx.glance:glance-appwidget:${opts.versions.glance}")
-    implementation("androidx.glance:glance-preview:${opts.versions.glance}")
-    implementation("androidx.glance:glance-material3:${opts.versions.glance}")
-    implementation("androidx.glance:glance-appwidget-preview:${opts.versions.glance}")
-    implementation("com.google.code.gson:gson:${opts.versions.gson}")
-    implementation("androidx.activity:activity-compose:${opts.versions.activityCompose}")
-    implementation("androidx.compose.ui:ui:${opts.versions.composeUi}")
-    implementation("androidx.compose.material3:material3:${opts.versions.material3}")
-    implementation("androidx.work:work-runtime:${opts.versions.workRuntime}")
-    implementation("com.github.PhilJay:MPAndroidChart:v${opts.versions.chart}")
-    `
+implementation("androidx.glance:glance-appwidget:${opts.versions.glance}")
+implementation("androidx.glance:glance-preview:${opts.versions.glance}")
+implementation("androidx.glance:glance-material3:${opts.versions.glance}")
+implementation("androidx.glance:glance-appwidget-preview:${opts.versions.glance}")
+implementation("com.google.code.gson:gson:${opts.versions.gson}")
+implementation("androidx.activity:activity-compose:${opts.versions.activityCompose}")
+implementation("androidx.compose.ui:ui:${opts.versions.composeUi}")
+implementation("androidx.compose.material3:material3:${opts.versions.material3}")
+implementation("androidx.work:work-runtime:${opts.versions.workRuntime}")
+`
 
         const gradleAndroidConfig = `
 android {
