@@ -94,7 +94,8 @@ fun WidgetConfigurationScreen(
     isAuthorized: Boolean = false,
     debugConnections: List<Connection> = emptyList(),
     onSiteSelected: (SiteListItem) -> Unit,
-    onCancel: () -> Unit
+    onCancel: () -> Unit,
+    additionalOptions: @Composable (() -> Unit)? = null
 ) {
     
     Surface(
@@ -230,6 +231,11 @@ fun WidgetConfigurationScreen(
                     }
                 }
                 else -> {
+                    if (additionalOptions != null) {
+                        additionalOptions()
+                        Spacer(modifier = Modifier.height(16.dp))
+                    }
+                    
                     Text(
                         text = "Select a site:",
                         fontSize = 16.sp,
