@@ -120,7 +120,7 @@ export default function HomeScreen() {
                 {connections.length === 1 && (
                     <TouchableOpacity
                         onPress={() => {
-                            router.push('/login/')
+                            router.push('/login')
                         }}
                     >
                         <Text style={{ color: COLORS.teal500, fontSize: 16 }}>
@@ -193,7 +193,7 @@ export default function HomeScreen() {
                 registerPlacement({
                     placement: 'OpenNotifications',
                     feature: () => {
-                        router.push('/notifications/')
+                        router.push('/notifications')
                     },
                 }).catch((error) => {
                     Sentry.captureException(error)
@@ -256,7 +256,7 @@ export default function HomeScreen() {
                         id: '0',
                         title:
                             Platform.OS === 'android'
-                                ? "Don't delete me ): Tap here!"
+                                ? 'Tap here for 50% off!'
                                 : "Don't delete me ):",
                         subtitle: "Here's 50% off for life!",
                         icon: 'love',
@@ -358,7 +358,7 @@ export default function HomeScreen() {
                                                     if (connections.length === 1) {
                                                         mmkvStorage.clearAll()
                                                         router.dismissAll()
-                                                        router.replace('/login/')
+                                                        router.replace('/login')
                                                         queryClient.clear()
                                                         return
                                                     }
@@ -377,7 +377,7 @@ export default function HomeScreen() {
 
                                 if (e.nativeEvent.name === 'Add Account') {
                                     const featureFn = () => {
-                                        router.push('/login/')
+                                        router.push('/login')
                                     }
 
                                     if (__DEV__) {
@@ -402,7 +402,7 @@ export default function HomeScreen() {
 
                                 if (e.nativeEvent.name === 'Notifications') {
                                     const featureFn = () => {
-                                        router.push('/notifications/')
+                                        router.push('/notifications')
                                     }
 
                                     if (__DEV__) {
@@ -491,14 +491,14 @@ export default function HomeScreen() {
 
                                 if (e.nativeEvent.name === 'Icons') {
                                     if (__DEV__) {
-                                        router.push('/icons/')
+                                        router.push('/icons')
                                         return
                                     }
 
                                     registerPlacement({
                                         placement: 'AppIcons',
                                         feature: () => {
-                                            router.push('/icons/')
+                                            router.push('/icons')
                                         },
                                     })
                                     return
