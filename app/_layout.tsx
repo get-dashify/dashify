@@ -1,3 +1,4 @@
+import { DarkTheme, ThemeProvider } from '@react-navigation/native'
 import { queryClient } from '@/lib/query'
 import { mmkvStorage } from '@/lib/storage'
 import { COLORS } from '@/theme/colors'
@@ -105,6 +106,7 @@ function RootLayout() {
                                 },
                             }}
                         >
+                            <ThemeProvider value={DarkTheme}>
                             <Stack
                                 screenOptions={{
                                     navigationBarHidden: true,
@@ -234,6 +236,7 @@ function RootLayout() {
                                     }}
                                 />
                             </Stack>
+                            </ThemeProvider>
                         </PersistQueryClientProvider>
                     </KeyboardProvider>
                 </GestureHandlerRootView>
